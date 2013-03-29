@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<mappings>
+  <mapping physical="@src.dir@/ModelGlue" virtual="/ModelGlue"></mapping>
+  <mapping physical="@src.dir@/coldspring" virtual="/coldspring"></mapping>
+  <mapping physical="@src.dir@/modelglueactionpacks" virtual="/modelglueactionpacks"></mapping>
+  <mapping physical="@src.dir@/modelglueapplicationtemplate" virtual="/modelglueapplicationtemplate"></mapping>
+  <mapping physical="@src.dir@/modelglueextensions" virtual="/modelglueextensions"></mapping>
+  <mapping physical="@src.dir@/modelgluesamples" virtual="/modelgluesamples"></mapping>
+  <mapping physical="@src.dir@/modelgluetests" virtual="/modelgluetests"></mapping>
+</mappings>
+

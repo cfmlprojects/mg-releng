@@ -1,0 +1,49 @@
+<project name="distro.build" default="build" basedir="./" xmlns:antcontrib="antlib:net.sf.antcontrib">
+
+	<property file="${user.home}/.cfdistrorc"/>
+	<loadproperties srcfile="build.properties"/>
+	<import file="${cfdistro.build.file}"/>
+
+	<target name="build" depends="cfdistro.build,src.to.mappings.xml,set.mappings">
+		<echo file="${src.dir}/ModelGlue/tests/unittests/gesture/HttpAntRunner.cfc"><![CDATA[<cfcomponent extends="mxunit.runner.HttpAntRunner"></cfcomponent>]]></echo> 
+		<echo file="${src.dir}/ModelGlue/tests/unittests/cfOrmAdapterTest/HttpAntRunner.cfc"><![CDATA[<cfcomponent extends="mxunit.runner.HttpAntRunner"></cfcomponent>]]></echo> 
+
+		<zip destfile="${dist.dir}/modelglue.zip" basedir="${src.dir}/ModelGlue" />
+		<zip destfile="${dist.dir}/modelglueextensions.zip" basedir="${src.dir}/modelglueextensions" />
+		<zip destfile="${dist.dir}/modelglueactionpacks.zip" basedir="${src.dir}/modelglueactionpacks" />
+		<zip destfile="${dist.dir}/modelglueapplicationtemplate.zip" basedir="${src.dir}/modelglueapplicationtemplate" />
+		<zip destfile="${dist.dir}/modelglue-all.zip" basedir="${src.dir}"/>
+	</target>
+
+	<target name="build.mvn.release" depends="project.update, build.mxunit.tests.run">
+		<property name="target.repo.id" value="cfdistro.repo.local" />
+
+		<mvn-put artifact="${dist.dir}/modelglue.zip" packaging="zip" repoId="${target.repo.id}"
+		 groupId="com.model-glue" artifactId="modelglue" version="3.2"/>
+		
+		<mvn-put artifact="${dist.dir}/modelglue-all.zip" packaging="zip" repoId="${target.repo.id}"
+		 groupId="com.model-glue" artifactId="modelglue-all" version="3.2"/>
+
+		<mvn-put artifact="${dist.dir}/modelglueextensions.zip" packaging="zip" repoId="${target.repo.id}"
+		 groupId="com.model-glue" artifactId="extensions" version="3.2"/>
+
+		<mvn-put artifact="${dist.dir}/modelglueactionpacks.zip" packaging="zip" repoId="${target.repo.id}"
+		 groupId="com.model-glue" artifactId="actionpacks" version="3.2"/>
+
+		<mvn-put artifact="${dist.dir}/modelglueapplicationtemplate.zip" packaging="zip" repoId="${target.repo.id}"
+		 groupId="com.model-glue" artifactId="template" version="3.2"/>
+
+		<!--  create an extension -->
+	    <delete dir="${basedir}/extensionbase/" />
+	    <mkdir dir="${basedir}/extensionbase/" />
+		<copy todir="${basedir}/extensionbase/applications/ModelGlue">
+			<fileset dir="${src.dir}/ModelGLue" />
+		</copy>
+		<antcontrib:runtarget target="extension.build" />
+
+		<!-- add the extension as well -->
+		<mvn-put artifact="${extension.dist}/${extension.archive}" packaging="zip" repoId="${target.repo.id}"
+		 groupId="cfml.extensions" artifactId="model-glue" version="3.2"/>
+	</target>
+	
+</project>

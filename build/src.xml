@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<src>
+	<project>
+		<src dest="@src.dir@/ModelGlue" type="git" 
+		uri="git://github.com/modelglue/modelglue-framework.git" 
+		branch="newScaffolding" user="" password="" />
+
+		<src dest="@src.dir@/modelglueactionpacks" type="git" 
+		uri="git://github.com/modelglue/modelglue-action-packs.git" 
+		branch="master" user="" password="" />
+
+		<src dest="@src.dir@/modelglueapplicationtemplate" type="git" 
+		uri="git://github.com/modelglue/modelglue-application-template.git" 
+		branch="master" user="" password="" />
+
+		<src dest="@src.dir@/modelgluesamples" type="git" 
+		uri="git://github.com/modelglue/modelglue-samples.git" 
+		branch="master" user="" password="" />
+
+		<src dest="@src.dir@/modelglueextensions" type="git" 
+		uri="git://github.com/modelglue/CFML-Extensions.git" 
+		branch="master" user="" password="" />
+
+		<src dest="@src.dir@/coldspring" type="git"
+		uri="git://github.com/boomfish/coldspring1.git" tag="coldspring-1-2"
+		branch="master" user="" password="" />
+	</project>
+	<sources>
+	</sources>
+</src>
