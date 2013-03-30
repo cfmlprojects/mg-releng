@@ -21,7 +21,7 @@
   <customWorkspace>${dist.root.dir}</customWorkspace>
   <builders>
     <hudson.tasks.Shell>
-      <command>$WORKSPACE/mg-releng update.mxunit.tests.run</command>
+      <command>$WORKSPACE/mg-releng build.mvn.release scm.branch=newScaffolding scm.dir=$WORKSPACE/src/ModelGlue</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>

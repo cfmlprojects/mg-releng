@@ -7,7 +7,7 @@
 	<target name="build" depends="cfdistro.build,src.to.mappings.xml,set.mappings">
 		<echo file="${src.dir}/ModelGlue/tests/unittests/gesture/HttpAntRunner.cfc"><![CDATA[<cfcomponent extends="mxunit.runner.HttpAntRunner"></cfcomponent>]]></echo> 
 		<echo file="${src.dir}/ModelGlue/tests/unittests/cfOrmAdapterTest/HttpAntRunner.cfc"><![CDATA[<cfcomponent extends="mxunit.runner.HttpAntRunner"></cfcomponent>]]></echo> 
-
+		<delete dir="${dist.dir}" includes="*.zip" />
 		<zip destfile="${dist.dir}/modelglue.zip" basedir="${src.dir}/ModelGlue" />
 		<zip destfile="${dist.dir}/modelglueextensions.zip" basedir="${src.dir}/modelglueextensions" />
 		<zip destfile="${dist.dir}/modelglueactionpacks.zip" basedir="${src.dir}/modelglueactionpacks" />
@@ -37,8 +37,9 @@
 	    <delete dir="${basedir}/extensionbase/" />
 	    <mkdir dir="${basedir}/extensionbase/" />
 		<copy todir="${basedir}/extensionbase/applications/ModelGlue">
-			<fileset dir="${src.dir}/ModelGLue" />
+			<fileset dir="${src.dir}/ModelGlue" />
 		</copy>
+	    <delete dir="${basedir}/extensionbase/" />
 		<antcontrib:runtarget target="extension.build" />
 
 		<!-- add the extension as well -->
